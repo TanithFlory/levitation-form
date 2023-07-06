@@ -5,7 +5,8 @@ export default {
     colors: {
       "input-gray": "var(--clr-gray)",
       "color-button": "var(--clr-button)",
-      'color-button-hover':'var(--clr-button-hover)'
+      "color-button-hover": "var(--clr-button-hover)",
+      "color-blue": "var(--clr-blue)",
     },
     maxWidth: {
       "400px": "400px",

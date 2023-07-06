@@ -8,6 +8,7 @@
   --clr-gray: #ccc;
   --clr-button: #27485d;
   --clr-button-hover: #276388;
+  --clr-blue: #1a69fa;
 }
 
 body {
@@ -16,11 +17,11 @@ body {
 
 .input-tag,
 input {
-  @apply rounded h-10 border border-input-gray shadow-sm outline-none px-2 py-1 box-border max-w-400px w-100%;
+  @apply rounded h-10 border border-input-gray shadow-sm outline-none px-2 py-1 box-border max-w-400px w-100% placeholder-input-gray;
 }
 
 .custom-phone-input {
-  height: 40px!important;
+  height: 40px !important;
   width: 100% !important;
 }
 

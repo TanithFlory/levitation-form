@@ -42,9 +42,12 @@ const Address = (props: IProps) => {
         return (
           <div key={index}>
             <div>
-              <label>{data.label}</label>
+              <div>
+                <label>{data.label}</label>
+                <span className="text-[#f43535]">*</span>
+              </div>
               <input
-                className="input-tag mb-6 my-1 placeholder-input-gray"
+                className="input-tag mb-6 my-1"
                 type="text"
                 name={data.identifier}
                 required
@@ -58,9 +61,12 @@ const Address = (props: IProps) => {
         return (
           <div key={index} className="grid grid-cols-2 gap-2">
             <div>
-              <label>{data.label}</label>
+              <div>
+                <label>{data.label}</label>
+                <span className="text-[#f31212]">*</span>
+              </div>
               <input
-                className="input-tag my-1 placeholder-input-gray w-100"
+                className="input-tag my-1 w-100"
                 type="text"
                 name={data.identifier}
                 required
@@ -68,9 +74,12 @@ const Address = (props: IProps) => {
               />
             </div>
             <div>
-              <label>{data.label2}</label>
+              <div>
+                <label>{data.label}</label>
+                <span className="text-[#f31212]">*</span>
+              </div>
               <input
-                className="input-tag mb-6 my-1 placeholder-input-gray"
+                className="input-tag mb-6 my-1"
                 type="text"
                 name={data.identifier2}
                 required

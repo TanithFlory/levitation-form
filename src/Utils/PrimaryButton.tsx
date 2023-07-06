@@ -5,7 +5,6 @@ interface IProps {
 }
 
 const PrimaryButton = ({ handleStep, children, type }: IProps) => {
-  console.log(children);
   return (
     <button
       type="button"

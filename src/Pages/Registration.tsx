@@ -1,6 +1,12 @@
+import { useState } from "react";
+import ProgressBar from "../Components/ProgressBar/ProgressBar";
 import SignUp from "../Components/SignUp/SignUp";
 import { images } from "../images";
 const Registration = () => {
+  const [step, setStep] = useState(1);
+  const getStepNumber = (n: number) => {
+    setStep(n);
+  };
   return (
     <div className="flex items-center max-w-screen m-0 h-screen">
       <div className="basis-1/2 relative h-full flex items-center flex-col justify-center max-lg:basis-auto w-100%">
@@ -10,7 +16,8 @@ const Registration = () => {
           className="absolute top-0 right-0 rotate-180 z-10"
         />
         <h2 className="mb-12 font-bold text-2xl">Let's get you started</h2>
-        <SignUp />
+        <ProgressBar stepNumber={step} />
+        <SignUp getStepNumber={getStepNumber} />
         <img
           src={images.Artwork}
           alt="artwork"

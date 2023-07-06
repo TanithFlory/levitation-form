@@ -21,6 +21,7 @@ const BasicDetails = (props: IProps) => {
       placeholder: "yourname@email.com",
     },
     {
+      label: "Phone Number",
       component: <PhoneInput />,
     },
   ];
@@ -30,7 +31,11 @@ const BasicDetails = (props: IProps) => {
         return (
           <div key={index}>
             <div>
-              <label>{data.label}</label>
+              <div>
+                {" "}
+                <label>{data.label}</label>
+                <span className="text-[#f33]">*</span>
+              </div>
               {data.component ? (
                 <PhoneInput
                   country={"in"}
@@ -44,7 +49,7 @@ const BasicDetails = (props: IProps) => {
                 />
               ) : (
                 <input
-                  className="input-tag mb-6 my-1 placeholder-input-gray"
+                  className="input-tag mb-6 my-1 "
                   type={data.type}
                   name={data.identifier}
                   required
