@@ -3,6 +3,8 @@ import BasicDetails from "./FormSteps/BasicDetails";
 import FormWrapper from "../../Utils/FormWrapper";
 import Address from "./FormSteps/Address";
 import FileUpload from "./FormSteps/FileUpload";
+import Success from "../Status/Success";
+import Failure from "../Status/Failure";
 
 interface IProps {
   getStepNumber(n: number): void;
@@ -16,6 +18,10 @@ const SignUp = (props: IProps) => {
   useEffect(() => {
     props.getStepNumber(step);
   }, [step]);
+
+  const setSuccess = (n:number) => {
+    setStep(n);
+  };
   switch (step) {
     case 1:
       return (
@@ -33,11 +39,13 @@ const SignUp = (props: IProps) => {
     case 4:
       return (
         <FormWrapper type="Upload files (.png/.pdf accepted)">
-          <FileUpload handleStep={handleStep} />
+          <FileUpload handleStep={handleStep} setSuccess={setSuccess} />
         </FormWrapper>
       );
+    case 5:
+      return <Success />;
     default:
-      <h5>GG</h5>;
+      return <Failure/>
   }
 };
 

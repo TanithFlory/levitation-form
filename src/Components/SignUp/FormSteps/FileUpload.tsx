@@ -5,6 +5,7 @@ import { IFiles } from "../../../types";
 
 interface IProps {
   handleStep(type: number): void;
+  setSuccess(n:number): void;
 }
 
 const FileUpload = (props: IProps) => {
@@ -97,6 +98,7 @@ const FileUpload = (props: IProps) => {
             files={files}
             onChangeMultiFiles={onChangeMultiFiles}
             handleStep={previousStep}
+            setSuccess={props.setSuccess} 
           />
         </>
       )}

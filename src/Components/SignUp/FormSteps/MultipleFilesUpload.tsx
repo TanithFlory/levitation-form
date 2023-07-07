@@ -8,10 +8,13 @@ import axios from "axios";
 interface IProps {
   handleStep(n: number): void;
   onChangeMultiFiles(e: React.SyntheticEvent<HTMLInputElement>): void;
+  setSuccess(n: number): void;
   files: IFiles;
 }
 
 const MultipleFilesUpload = (props: IProps) => {
+  console.log(props);
+
   const dispatch = useAppDispatch();
   const globalFormData = useAppSelector((state) => state.form);
 
@@ -35,7 +38,7 @@ const MultipleFilesUpload = (props: IProps) => {
     }
 
     try {
-      await axios.post(
+      const response = await axios.post(
         "https://x8ki-letl-twmt.n7.xano.io/api:XooRuQbs/form",
         {
           ...globalFormData,
@@ -43,12 +46,17 @@ const MultipleFilesUpload = (props: IProps) => {
         },
         {
           headers: {
-            Authorization: "Bearer TTT151",
+            Authorization:
+              "Bearer eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2Q0JDLUhTNTEyIiwiemlwIjoiREVGIn0.UpmkZAMbsGLZiJVd8rIY4G0gauRBChuB3AgwBeP5IkTbwdhEVCZu7ZY356DAzrJHLUEvgwtzvN72j7EiJSAZtPmBJJqFFBAG._KNloeQGRaMxNYURlLGJdQ.BsRIFabcMaF7DmJMhF7ks65BhmrQ7OCr-o2Xs65TpDQNbmP_6meKVqBuPdhdmxhrFmVIGO6O32MvbFcbxjuoNOM5g9_Qx4f047rzSZysJpE5F2elJGuZYeyNqy5k7SwKwrPmjWERHOdMd971fyp3zeZH0DXllcUM-sH2_gtEkV8.lcc27ODDDTLzDPea__D-1nfNxpnqsSdQuB_PeAUwJIg",
             "Content-Type": "multipart/form-data",
           },
         }
       );
+      if (response) {
+        props.setSuccess(5);
+      }
     } catch (err) {
+      props.setSuccess(6);
       console.log(err);
     }
   };

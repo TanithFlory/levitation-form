@@ -43,7 +43,9 @@ const ProgressBar = (props: Iprops) => {
           );
         })}
       </div>
-      <span>Step {props.stepNumber}/4</span>
+      <span>
+        {props.stepNumber <= 4 ? `Step ${props.stepNumber}/4` : "Success!"}
+      </span>
     </div>
   );
 };
