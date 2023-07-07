@@ -1,10 +1,16 @@
 import FormWrapper from "../../Utils/FormWrapper";
 import { images } from "../../images";
-const Success = () => {
+interface IProps {
+  text: string;
+}
+
+const Success = ({ text }: IProps) => {
   return (
     <FormWrapper className="flex items-center flex-col">
       <img src={images.CheckMark} alt="checkmark" />
-      <h1 className="text-center text-lg">Success. Your details have been successfully sent!</h1>
+      <h1 className="text-center text-lg">
+       {text}
+      </h1>
     </FormWrapper>
   );
 };

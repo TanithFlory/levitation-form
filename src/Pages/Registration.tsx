@@ -4,8 +4,13 @@ import SignUp from "../Components/SignUp/SignUp";
 import { images } from "../images";
 const Registration = () => {
   const [step, setStep] = useState(1);
+  const [signIn, setSignIn] = useState(true);
   const getStepNumber = (n: number) => {
     setStep(n);
+  };
+
+  const checkSignInForm = () => {
+    setSignIn((prev) => !prev);
   };
   return (
     <div className="flex items-center max-w-screen m-0 h-screen">
@@ -15,9 +20,14 @@ const Registration = () => {
           alt="artwork"
           className="absolute top-0 right-0 rotate-180 z-10 opacity-50"
         />
-        <h2 className="mb-12 font-bold text-2xl">Let's get you started</h2>
-        <ProgressBar stepNumber={step} />
-        <SignUp getStepNumber={getStepNumber} />
+        <h2 className="mb-12 font-bold text-2xl">
+          {!signIn ? "Welcome Back!" : `Let's get you started`}
+        </h2>
+        {signIn && <ProgressBar stepNumber={step} />}
+        <SignUp
+          checkSignInForm={checkSignInForm}
+          getStepNumber={getStepNumber}
+        />
         <img
           src={images.Artwork}
           alt="artwork"
