@@ -2,22 +2,27 @@ import { useState } from "react";
 import PrimaryButton from "../../../Utils/PrimaryButton";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-
+import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
+import { formActions } from "../../../Store/Features/form";
+import validateField from "./validationField";
 interface IProps {
   handleStep(type: number): void;
 }
 
 const BasicDetails = (props: IProps) => {
+  const globalFormData = useAppSelector((state) => state.form);
+  const { name, email, phone_number } = globalFormData;
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone_number: "",
+    name,
+    email,
+    phone_number,
   });
   const [errors, setErrors] = useState({
     name: "",
     email: "",
     phone_number: "",
   });
+  const dispatch = useAppDispatch();
   const inputBox = [
     {
       type: "text",
@@ -36,13 +41,13 @@ const BasicDetails = (props: IProps) => {
       component: <PhoneInput />,
     },
   ];
-  const setErrorHelper = (fieldName:string, errorMessage:string) =>{
-    setErrors((prev)=>{
-      return {...prev,[fieldName]:errorMessage};
-    })
-  }
+  const setErrorHelper = (fieldName: string, errorMessage: string) => {
+    setErrors((prev) => {
+      return { ...prev, [fieldName]: errorMessage };
+    });
+  };
   const onChangePhoneHandler = (value: string) => {
-    setErrorHelper("phone_number","");
+    setErrorHelper("phone_number", "");
     setFormData((prev) => {
       return {
         ...prev,
@@ -52,7 +57,7 @@ const BasicDetails = (props: IProps) => {
   };
   const onChangeHandler = (e: React.SyntheticEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
-    setErrorHelper(target.name,"");
+    setErrorHelper(target.name, "");
     setFormData((prev) => {
       return {
         ...prev,
@@ -61,35 +66,37 @@ const BasicDetails = (props: IProps) => {
     });
   };
 
-  const validateField = (field:string, fieldName:string, errorMessage:string) => {
-    if (field.trim() === "") {
-      setErrors((prev) => {
-        return { ...prev, [fieldName]: errorMessage };
-      });
-      return false;
-    }
-    return true;
-  };
-
   const validation = () => {
     const { email, phone_number, name } = formData;
     const nameRegex = /(^[a-zA-Z\ ]{3,})/;
-    const emailRegex =  /^[\w-._]+@([\w-]{3,}\.)+[\w-]{2,4}$/;
+    const emailRegex = /^[\w-._]+@([\w-]{3,}\.)+[\w-]{2,4}$/;
 
-    if (!validateField(name, "name", "Name cannot be empty.")) return;
-    if (!validateField(email, "email", "Email cannot be empty.")) return;
-    if (!validateField(phone_number,"phone_number","Phone Number cannot be empty."))return;
-    
+    if (!validateField(name, "name", "Name cannot be empty.", setErrors))
+      return;
+    if (!validateField(email, "email", "Email cannot be empty.", setErrors))
+      return;
+    if (
+      !validateField(
+        phone_number,
+        "phone_number",
+        "Phone Number cannot be empty.",
+        setErrors
+      )
+    )
+      return;
 
-    if(!nameRegex.test(name)){
-      console.log("failed")
-      return setErrorHelper("name","Name can contain only alphabets. (Minimum 3 characters)")
-    } 
-    if(!emailRegex.test(email)){
-      console.log("failed")
-      return setErrorHelper("email","Enter a valid email.")
-    } 
-
+    if (!nameRegex.test(name)) {
+      console.log("failed");
+      return setErrorHelper(
+        "name",
+        "Name can contain only alphabets. (Minimum 3 characters)"
+      );
+    }
+    if (!emailRegex.test(email)) {
+      console.log("failed");
+      return setErrorHelper("email", "Enter a valid email.");
+    }
+    dispatch(formActions.updateForm({ ...globalFormData, ...formData }));
     props.handleStep(1);
   };
 
@@ -126,7 +133,7 @@ const BasicDetails = (props: IProps) => {
                     placeholder={data.placeholder}
                     onChange={onChangeHandler}
                     value={formData[data.identifier as keyof typeof formData]}
-                    maxLength={data.identifier==='name'?16:36}
+                    maxLength={data.identifier === "name" ? 16 : 36}
                   />
                   <h5>{errors[data.identifier as keyof typeof formData]}</h5>
                 </div>

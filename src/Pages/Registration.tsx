@@ -31,8 +31,8 @@ const Registration = () => {
           className="h-full w-100% absolute top-0"
         />
         <div className="z-10 fixed  max-w-400px text-[#000] ">
-          <h1 className="text-6xl">“Creativity is intelligence having fun”</h1>
-          <h5>- Albert Einstein</h5>
+          <h1 className="text-6xl ">“Creativity is intelligence having fun”</h1>
+          <h5 className="text-[#000]">- Albert Einstein</h5>
         </div>
       </div>
     </div>
