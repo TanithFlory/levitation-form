@@ -13,14 +13,14 @@ const Registration = () => {
     setSignIn((prev) => !prev);
   };
   return (
-    <div className="flex items-center max-w-screen m-0 h-screen">
+    <div className="flex items-center max-w-screen m-0 h-screen max-lg:h-auto">
       <div className="basis-1/2 relative h-full flex items-center flex-col justify-center max-lg:basis-auto w-100%">
         <img
           src={images.Artwork}
           alt="artwork"
           className="absolute top-0 right-0 rotate-180 z-10 opacity-50"
         />
-        <h2 className="mb-12 font-bold text-2xl">
+        <h2 className="mt-6 font-bold text-2xl">
           {!signIn ? "Welcome Back!" : `Let's get you started`}
         </h2>
         {signIn && <ProgressBar stepNumber={step} />}

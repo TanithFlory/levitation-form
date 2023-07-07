@@ -19,13 +19,16 @@ body {
 input {
   @apply rounded h-10 border border-input-gray shadow-sm outline-none px-2 py-1 box-border max-w-400px w-100% placeholder-input-gray;
 }
+p {
+  @apply text-center;
+}
 
 .custom-phone-input {
   height: 40px !important;
   width: 100% !important;
 }
 h5 {
-  @apply h-[24px] text-[#f90000] text-xs;
+  @apply h-[24px] text-[#f90000] text-xs max-md:h-[35px] text-center;
 }
 h1,
 h2,

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import Loading from "../../Utils/Loading";
 import Success from "../Status/Success";
 interface IProps {
   setStatusHandler(): void;
@@ -10,6 +11,7 @@ const SignIn = ({ setStatusHandler }: IProps) => {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<boolean>();
   const changeHandler = (e: React.SyntheticEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
@@ -22,7 +24,7 @@ const SignIn = ({ setStatusHandler }: IProps) => {
   };
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await axios.post(
         "https://x8ki-letl-twmt.n7.xano.io/api:XooRuQbs/auth/login",
@@ -65,6 +67,7 @@ const SignIn = ({ setStatusHandler }: IProps) => {
           >
             Login
           </button>
+          {loading && <Loading />}
         </form>
       ) : (
         <Success text={`You're successfully signed in!`} />

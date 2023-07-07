@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../Store/hooks";
 import getLocation from "./getLocation";
 import { formActions } from "../../../Store/Features/form";
 import axios from "axios";
+import Loading from "../../../Utils/Loading";
 interface IProps {
   handleStep(n: number): void;
   onChangeMultiFiles(e: React.SyntheticEvent<HTMLInputElement>): void;
@@ -13,10 +14,9 @@ interface IProps {
 }
 
 const MultipleFilesUpload = (props: IProps) => {
-  console.log(props);
-
   const dispatch = useAppDispatch();
   const globalFormData = useAppSelector((state) => state.form);
+  const [loading, setLoading] = useState(false);
 
   const [errors, setErrors] = useState({
     file: "",
@@ -36,6 +36,8 @@ const MultipleFilesUpload = (props: IProps) => {
       }));
       return;
     }
+    setLoading(true);
+    return;
 
     try {
       const response = await axios.post(
@@ -122,6 +124,7 @@ const MultipleFilesUpload = (props: IProps) => {
           Submit
         </button>
       </div>
+      {loading && <Loading />}
     </form>
   );
 };
