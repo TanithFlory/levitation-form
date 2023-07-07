@@ -6,7 +6,6 @@ import FileUpload from "./FormSteps/FileUpload";
 import Success from "../Status/Success";
 import Failure from "../Status/Failure";
 import SignIn from "../SignIn/SignIn";
-
 interface IProps {
   getStepNumber(n: number): void;
   checkSignInForm(): void;

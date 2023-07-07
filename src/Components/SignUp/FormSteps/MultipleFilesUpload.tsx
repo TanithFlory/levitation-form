@@ -37,7 +37,6 @@ const MultipleFilesUpload = (props: IProps) => {
       return;
     }
     setLoading(true);
-    return;
 
     try {
       const response = await axios.post(
