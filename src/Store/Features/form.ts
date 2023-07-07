@@ -11,10 +11,6 @@ const initialState: IFormData = {
   pincode: 0,
   country: "",
   geolocation: "",
-  single_file: "",
-  multi_ups1: "",
-  multi_ups2: "",
-  multi_ups3: "",
 };
 
 const formSlice = createSlice({

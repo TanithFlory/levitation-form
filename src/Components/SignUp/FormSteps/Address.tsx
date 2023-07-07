@@ -77,7 +77,6 @@ const Address = (props: IProps) => {
       };
     });
   };
-
   const validation = () => {
     const { address_1, address_2, state, city, country, pincode } = formData;
     const pincodeRegex = /^[0-9]*$/;
@@ -138,6 +137,7 @@ const Address = (props: IProps) => {
       formActions.updateForm({
         ...globalFormData,
         ...formData,
+        pincode: Number(formData.pincode),
       })
     );
     props.handleStep(1);

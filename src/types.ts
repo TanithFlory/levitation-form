@@ -9,8 +9,11 @@ export interface IFormData {
   pincode: number;
   country: string;
   geolocation: string;
-  single_file: string;
-  multi_ups1: string;
-  multi_ups2?: string;
-  multi_ups3?: string;
+}
+
+export interface IFiles {
+  single_file: File | null;
+  multi_ups1: File | null;
+  multi_ups2?: File | null;
+  multi_ups3?: File | null;
 }

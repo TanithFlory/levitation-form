@@ -3,7 +3,6 @@ import BasicDetails from "./FormSteps/BasicDetails";
 import FormWrapper from "../../Utils/FormWrapper";
 import Address from "./FormSteps/Address";
 import FileUpload from "./FormSteps/FileUpload";
-import MultipleFilesUpload from "./FormSteps/MultipleFilesUpload";
 
 interface IProps {
   getStepNumber(n: number): void;
@@ -31,15 +30,10 @@ const SignUp = (props: IProps) => {
         </FormWrapper>
       );
     case 3:
-      return (
-        <FormWrapper type="Upload a file. (.png, .pdf)">
-          <FileUpload handleStep={handleStep} />
-        </FormWrapper>
-      );
     case 4:
       return (
-        <FormWrapper type="Upload multiple files (Max 5 & .png, .pdf)">
-          <MultipleFilesUpload handleStep={handleStep} />
+        <FormWrapper type="Upload files (.png/.pdf accepted)">
+          <FileUpload handleStep={handleStep} />
         </FormWrapper>
       );
     default:

@@ -2,6 +2,7 @@ interface IProps {
   handleStep(type: number): void;
   children: React.ReactNode;
   type: number;
+  id?:string;
 }
 
 const PrimaryButton = ({ handleStep, children, type }: IProps) => {
