@@ -13,7 +13,7 @@ const Registration = () => {
         <img
           src={images.Artwork}
           alt="artwork"
-          className="absolute top-0 right-0 rotate-180 z-10"
+          className="absolute top-0 right-0 rotate-180 z-10 opacity-50"
         />
         <h2 className="mb-12 font-bold text-2xl">Let's get you started</h2>
         <ProgressBar stepNumber={step} />
@@ -21,7 +21,7 @@ const Registration = () => {
         <img
           src={images.Artwork}
           alt="artwork"
-          className="absolute bottom-0 left-0"
+          className="absolute bottom-0 left-0 opacity-50"
         />
       </div>
       <div className="basis-1/2 h-full w-full relative flex justify-center items-center max-lg:hidden">

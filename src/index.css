@@ -24,7 +24,9 @@ input {
   height: 40px !important;
   width: 100% !important;
 }
-
+h5 {
+  @apply h-[24px] text-[#f90000] text-xs;
+}
 h1,
 h2,
 h3,
